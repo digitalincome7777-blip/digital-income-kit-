@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100 ChatGPT Prompts for Small Businesses</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFEAE0;
+    --paper-dark:#E4DDCC;
+    --ink:#201F1D;
+    --pink:#FF5A8A;
+    --yellow:#FFD23F;
+    --teal:#227C7C;
+    --line:#201F1D;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Space Mono', monospace;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px;}
+  a{color:inherit;}
+
+  /* subtle riso-style grain */
+  body::before{
+    content:"";
+    position:fixed;inset:0;
+    pointer-events:none;
+    opacity:.05;
+    background-image:radial-gradient(var(--ink) 1px, transparent 1px);
+    background-size:3px 3px;
+    z-index:1000;
+  }
+
+  header{
+    padding:20px 0;
+    border-bottom:3px solid var(--line);
+  }
+  .brand{
+    display:flex;justify-content:space-between;align-items:baseline;
+    font-size:13px;letter-spacing:.02em;
+  }
+  .brand strong{font-family:'Archivo Black',sans-serif;font-size:15px;}
+
+  /* HERO */
+  .hero{
+    padding:72px 0 56px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:48px;
+    align-items:start;
+  }
+  h1{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(34px,5.4vw,56px);
+    line-height:1.05;
+    margin:0 0 22px;
+    letter-spacing:-.01em;
+  }
+  .lede{
+    font-size:17px;
+    max-width:46ch;
+    margin:0 0 28px;
+  }
+  .lede .strike{
+    text-decoration:line-through;
+    text-decoration-thickness:2px;
+    opacity:.55;
+  }
+
+  .price-stamp{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width:132px;height:132px;
+    border:3px solid var(--ink);
+    border-radius:50%;
+    transform:rotate(-8deg);
+    background:var(--yellow);
+    text-align:center;
+  }
+  .price-stamp span:first-child{font-size:11px;text-transform:uppercase;letter-spacing:.08em;}
+  .price-stamp span:last-child{font-family:'Archivo Black',sans-serif;font-size:30px;line-height:1;margin-top:4px;}
+
+  .hero-side{
+    display:flex;flex-direction:column;
+    align-items:flex-start;
+    gap:18px;
+    padding-top:8px;
+  }
+
+  .email-capture{
+    width:100%;
+    border:3px solid var(--ink);
+    background:var(--paper-dark);
+    padding:14px;
+  }
+  .email-capture label{
+    display:block;
+    font-size:12px;
+    margin-bottom:8px;
+  }
+  .ml-embed{
+    width:100%;
+    height:76px;
+    border:none;
+    background:transparent;
+    display:block;
+  }
+
+  .cta-btn{
+    font-family:'Space Mono',monospace;
+    font-weight:700;
+    font-size:16px;
+    background:var(--pink);
+    color:var(--ink);
+    border:3px solid var(--ink);
+    padding:16px 26px;
+    cursor:pointer;
+    box-shadow:5px 5px 0 var(--ink);
+    transition:transform .12s ease, box-shadow .12s ease;
+    width:100%;
+    text-align:center;
+  }
+  .cta-btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--ink);}
+  .cta-btn:active{transform:translate(1px,1px);box-shadow:2px 2px 0 var(--ink);}
+  .cta-btn:disabled{opacity:.6;cursor:wait;}
+  .cta-note{font-size:12px;opacity:.65;}
+  .cta-error{font-size:12px;color:#B0203E;display:none;}
+
+  /* SECTION HEADS */
+  .section{padding:56px 0;border-bottom:3px solid var(--line);}
+  .section:last-of-type{border-bottom:none;}
+  .section-head{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(22px,3vw,30px);
+    margin:0 0 28px;
+  }
+
+  /* WHAT YOU GET - fanned cards */
+  .cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  .card{
+    border:3px solid var(--ink);
+    background:var(--paper-dark);
+    padding:16px;
+    min-height:120px;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .card:nth-child(3n+1){background:var(--pink);}
+  .card:nth-child(3n+2){background:var(--yellow);}
+  .card .count{font-family:'Archivo Black',sans-serif;font-size:26px;}
+  .card .label{font-size:12.5px;}
+
+  .bonus{
+    margin-top:24px;
+    border:3px dashed var(--ink);
+    padding:18px 20px;
+    font-size:14px;
+    background:var(--teal);
+    color:var(--paper);
+  }
+  .bonus strong{font-family:'Archivo Black',sans-serif;}
+
+  /* WHY */
+  .flow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    font-size:13.5px;
+  }
+  .flow .bad{
+    border:3px solid var(--ink);
+    padding:14px 18px;
+    background:var(--paper-dark);
+  }
+  .flow .arrow{font-size:22px;}
+  .steps{
+    display:flex;gap:10px;flex-wrap:wrap;
+    margin-top:8px;
+  }
+  .steps span{
+    border:3px solid var(--ink);
+    background:var(--yellow);
+    padding:10px 16px;
+    font-weight:700;
+  }
+
+  /* WHO FOR */
+  .tags{display:flex;flex-wrap:wrap;gap:10px;}
+  .tags span{
+    border:3px solid var(--ink);
+    padding:8px 14px;
+    font-size:13px;
+    background:var(--paper);
+  }
+
+  /* FAQ */
+  .faq-item{border-top:3px solid var(--ink);padding:18px 0;}
+  .faq-item:last-child{border-bottom:3px solid var(--ink);}
+  .faq-q{font-weight:700;margin:0 0 6px;}
+  .faq-q::before{content:"Q: ";}
+  .faq-a{margin:0;opacity:.85;}
+  .faq-a::before{content:"A: ";font-weight:700;opacity:1;}
+
+  /* FOOTER CTA */
+  .final{
+    padding:64px 0 80px;
+    text-align:center;
+  }
+  .final h2{
+    font-family:'Archivo Black',sans-serif;
+    font-size:clamp(26px,4vw,38px);
+    margin:0 0 28px;
+  }
+  .final .cta-btn{max-width:340px;margin:0 auto;}
+  .final .cta-note{margin-top:10px;}
+
+  footer{
+    padding:20px 0 40px;
+    font-size:12px;
+    opacity:.6;
+    text-align:center;
+  }
+
+
+  .email-capture input{
+    width:100%;
+    border:3px solid var(--ink);
+    background:var(--paper);
+    color:var(--ink);
+    padding:13px 12px;
+    font-family:'Space Mono',monospace;
+    font-size:14px;
+    outline:none;
+  }
+  .email-capture input:focus{
+    box-shadow:4px 4px 0 var(--ink);
+  }
+  .required{font-weight:700;}
+  .form-error{
+    display:none;
+    margin-top:8px;
+    font-size:12px;
+    color:#B0203E;
+  }
+  .form-note{
+    margin-top:8px;
+    font-size:11px;
+    opacity:.65;
+  }
+  .trust-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:10px;
+    font-size:11px;
+    opacity:.7;
+  }
+  .trust-row span{
+    border:2px solid var(--ink);
+    padding:5px 8px;
+    background:var(--paper);
+  }
+  @media (max-width:760px){
+    .hero-grid{grid-template-columns:1fr;}
+    .cards{grid-template-columns:repeat(2,1fr);}
+    .hero{padding-top:48px;}
+    .cta-btn{font-size:15px;}
+  }
+
+</style>
+</head>
+<body>
+<!--
+  LAUNCH CHECKLIST:
+  1) Publish this HTML at your landing-page URL.
+  2) Configure the Razorpay Payment Link to redirect to the published thank-you page
+     after successful payment.
+  3) Test a real/small payment flow before launch.
+  4) For automated MailerLite delivery, replace the simple email capture with the
+     production MailerLite form/embed code or connect the collected email to MailerLite.
+-->
+
+<header>
+  <div class="wrap brand">
+    <strong>Digital Income Kit</strong>
+    <span>Create. Sell. Automate.</span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>100 ChatGPT Prompts for Small Businesses</h1>
+      <p class="lede">
+        Stop staring at a blank screen wondering what to post.
+        Get 100 ready-to-use prompts for social captions, Reels, sales messages, and more —
+        built for small business owners, not marketing teams.
+      </p>
+    </div>
+    <div class="hero-side">
+      <div class="price-stamp">
+        <span>Only</span>
+        <span>₹29</span>
+      </div>
+
+      <div class="email-capture">
+        <label for="emailInput">Email address <span class="required">*</span></label>
+        <input id="emailInput" name="email" type="email" autocomplete="email"
+               placeholder="you@example.com" required>
+        <div class="form-error" id="emailError" role="alert"></div>
+        <div class="form-note">We'll use this email for your purchase confirmation and product updates.</div>
+      </div>
+
+      <button class="cta-btn" id="buyBtn">Get the 100 prompts</button>
+      <div class="cta-note" id="ctaNote">Secure payment via Razorpay • Digital product • One-time payment</div>
+      <div class="trust-row"><span>₹29 one-time</span><span>Digital PDF</span><span>Instant access</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-head">What you'll get</h2>
+    <div class="cards">
+      <div class="card"><span class="count">20</span><span class="label">Instagram content prompts</span></div>
+      <div class="card"><span class="count">15</span><span class="label">Caption prompts</span></div>
+      <div class="card"><span class="count">15</span><span class="label">Reel prompts</span></div>
+      <div class="card"><span class="count">10</span><span class="label">WhatsApp marketing prompts</span></div>
+      <div class="card"><span class="count">10</span><span class="label">Sales prompts</span></div>
+      <div class="card"><span class="count">10</span><span class="label">Customer-service prompts</span></div>
+      <div class="card"><span class="count">10</span><span class="label">Business-planning prompts</span></div>
+      <div class="card"><span class="count">10</span><span class="label">Product-description prompts</span></div>
+    </div>
+    <div class="bonus"><strong>Bonus —</strong> 20 additional content ideas for your business, included free. The bonus is included in the same PDF.</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-head">Why you'll love it</h2>
+    <div class="flow">
+      <div class="bad">"What should I tell ChatGPT?"</div>
+      <span class="arrow">→</span>
+      <div class="steps">
+        <span>Copy</span><span>Paste</span><span>Customize</span><span>Generate</span>
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:14px;max-width:52ch;">No complicated AI knowledge required. Every prompt is written to work the moment you paste it in.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-head">Who is this for?</h2>
+    <div class="tags">
+      <span>Small business owners</span>
+      <span>Instagram sellers</span>
+      <span>Freelancers</span>
+      <span>Coaches</span>
+      <span>Consultants</span>
+      <span>Home businesses</span>
+      <span>Local businesses</span>
+      <span>Beginners using ChatGPT</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <h2 class="section-head">Frequently asked questions</h2>
+    <div class="faq-item">
+      <p class="faq-q">Is this a physical product?</p>
+      <p class="faq-a">No. This is a digital PDF.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Do I need ChatGPT?</p>
+      <p class="faq-a">The prompts are designed primarily for ChatGPT, though you can adapt them for other AI tools.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Is this a subscription?</p>
+      <p class="faq-a">No. This is a one-time purchase.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Will I receive a physical book?</p>
+      <p class="faq-a">No. The product is delivered digitally.</p>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>Ready to create content faster?</h2>
+    <div class="email-capture" style="max-width:340px;margin:0 auto 18px;">
+        <label for="emailInput2">Email address <span class="required">*</span></label>
+        <input id="emailInput2" name="email" type="email" autocomplete="email"
+               placeholder="you@example.com" required>
+        <div class="form-error" id="emailError2" role="alert"></div>
+        <div class="form-note">We'll use this email for your purchase confirmation and product updates.</div>
+      </div>
+    <button class="cta-btn" id="buyBtn2" style="max-width:340px;">Get instant access — ₹29</button>
+    <div class="cta-note">Secure payment via Razorpay • Digital product • One-time payment</div>
+  </div>
+</section>
+
+<footer>
+  Digital Income Kit — Create. Sell. Automate.<br>
+  Questions or issues? Write to us at <a href="mailto:digitalincome7777@gmail.com">digitalincome7777@gmail.com</a>
+</footer>
+
+<script>
+  const RAZORPAY_PAYMENT_LINK = "https://rzp.io/rzp/8MKdHt9";
+
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function getEmailValue() {
+    const first = document.getElementById("emailInput");
+    const second = document.getElementById("emailInput2");
+    const value = (first && first.value.trim()) || (second && second.value.trim()) || "";
+    return value;
+  }
+
+  function setEmailValue(value) {
+    const first = document.getElementById("emailInput");
+    const second = document.getElementById("emailInput2");
+    if (first) first.value = value;
+    if (second) second.value = value;
+  }
+
+  function validateAndContinue(button, errorId) {
+    const email = getEmailValue();
+    const error = document.getElementById(errorId);
+
+    if (!isValidEmail(email)) {
+      if (error) {
+        error.textContent = "Please enter a valid email address before continuing.";
+        error.style.display = "block";
+      }
+      const target = document.getElementById("emailInput") || document.getElementById("emailInput2");
+      if (target) target.focus();
+      return;
+    }
+
+    if (error) error.style.display = "none";
+
+    // Preserve the buyer's email for the thank-you page / future delivery workflow.
+    try {
+      sessionStorage.setItem("dik_customer_email", email);
+    } catch (e) {}
+
+    button.disabled = true;
+    button.textContent = "Opening secure payment…";
+
+    // The Razorpay Payment Link remains the source of truth for payment.
+    // Configure the Payment Link's successful-payment redirect to the published
+    // thank-you page URL before launch.
+    window.location.href = RAZORPAY_PAYMENT_LINK;
+  }
+
+  function wireButton(btnId, errorId) {
+    const btn = document.getElementById(btnId);
+    if (!btn) return;
+    btn.addEventListener("click", () => validateAndContinue(btn, errorId));
+  }
+
+  // Keep the two email fields synchronized.
+  ["emailInput", "emailInput2"].forEach(id => {
+    const input = document.getElementById(id);
+    if (!input) return;
+    input.addEventListener("input", () => {
+      setEmailValue(input.value);
+      const errorId = id === "emailInput" ? "emailError" : "emailError2";
+      const error = document.getElementById(errorId);
+      if (error) error.style.display = "none";
+    });
+  });
+
+  wireButton("buyBtn", "emailError");
+  wireButton("buyBtn2", "emailError2");
+</script>
+
+</body>
+</html>
