@@ -18,7 +18,7 @@
     --line:#201F1D;
   }
   *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
+  html{scroll-behavior:smooth;} html,body{margin:0;padding:0;}
   body{
     background:var(--paper);
     color:var(--ink);
@@ -76,43 +76,6 @@
   }
   .pay-tab:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
   .pay-tab:active{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink);}
-
-  /* single email+mobile capture widget - top right corner, only instance on the page */
-  .capture-widget{
-    border:3px solid var(--ink);
-    background:var(--paper-dark);
-    padding:10px 12px;
-    width:230px;
-  }
-  .capture-widget .cw-label{
-    font-size:10.5px;
-    text-transform:uppercase;
-    letter-spacing:.04em;
-    margin-bottom:6px;
-    opacity:.75;
-  }
-  .cw-form{display:flex;flex-direction:column;gap:6px;}
-  .cw-form input{
-    width:100%;
-    font-family:'Space Mono',monospace;
-    font-size:12.5px;
-    padding:7px 8px;
-    border:2px solid var(--ink);
-    background:var(--paper);
-  }
-  .cw-form button{
-    font-family:'Space Mono',monospace;
-    font-weight:700;
-    font-size:12px;
-    background:var(--yellow);
-    color:var(--ink);
-    border:2px solid var(--ink);
-    padding:7px;
-    cursor:pointer;
-  }
-  .cw-msg{font-size:10.5px;margin-top:6px;min-height:12px;}
-  .cw-msg.ok{color:var(--teal);}
-  .cw-msg.err{color:#B0203E;}
 
   /* HERO */
   .hero{padding:64px 0 48px;}
@@ -308,17 +271,7 @@
   <div class="wrap header-row">
     <div class="brand">Digital Income Kit</div>
     <div class="header-right">
-      <a class="pay-tab" href="https://rzp.io/rzp/USS4tum" target="_blank" rel="noopener">Pay</a>
-      <!-- Single email + mobile capture widget on the whole site, top-right corner -->
-      <div class="capture-widget">
-        <div class="cw-label">Get updates</div>
-        <form class="cw-form" id="cwForm">
-          <input type="email" id="cwEmail" placeholder="Email" required>
-          <input type="tel" id="cwMobile" placeholder="Mobile no." required inputmode="numeric">
-          <button type="submit">Notify me</button>
-        </form>
-        <div class="cw-msg" id="cwMsg"></div>
-      </div>
+      <a class="pay-tab" href="#pay-now">Pay</a>
     </div>
   </div>
 </header>
@@ -340,7 +293,7 @@
         <span>Only</span>
         <span>₹29</span>
       </div>
-      <a class="cta-btn" href="https://rzp.io/rzp/USS4tum" target="_blank" rel="noopener">Get the 100 prompts</a>
+      <a class="cta-btn" href="#pay-now">Get the 100 prompts</a>
       <div class="cta-note">Instant PDF download after payment</div>
     </div>
   </div>
@@ -418,7 +371,7 @@
 <section class="final">
   <div class="wrap">
     <h2>Ready to create content faster?</h2>
-    <a class="cta-btn" href="https://rzp.io/rzp/USS4tum" target="_blank" rel="noopener">Get instant access — ₹29</a>
+    <a class="cta-btn" href="#pay-now">Get instant access — ₹29</a>
     <div class="cta-note">Instant PDF download after payment</div>
   </div>
 </section>
@@ -426,7 +379,7 @@
 <section class="pay-section" id="pay-now">
   <div class="wrap">
     <h2>Pay ₹29 &amp; get your prompts</h2>
-    <p>Enter your email and mobile number so we can send your payment confirmation and PDF.</p>
+    <p>Enter your email and mobile number, then continue to Razorpay to complete your ₹29 payment.</p>
 
     <button class="pay-open-btn" id="payOpenBtn" type="button">Pay Now</button>
 
@@ -450,42 +403,15 @@
 </footer>
 
 <script>
-  const cwForm = document.getElementById("cwForm");
-  const cwMsg = document.getElementById("cwMsg");
-
-  cwForm.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const email = document.getElementById("cwEmail").value.trim();
-    const mobile = document.getElementById("cwMobile").value.trim().replace(/\D/g, "");
-
-    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    const mobileOk = /^\d{10}$/.test(mobile);
-
-    if (!emailOk || !mobileOk) {
-      cwMsg.textContent = "Enter a valid email and 10-digit mobile no.";
-      cwMsg.className = "cw-msg err";
-      return;
-    }
-
-    const subject = encodeURIComponent("New signup - 100 ChatGPT Prompts landing page");
-    const body = encodeURIComponent(`Email: ${email}\nMobile: ${mobile}`);
-    window.location.href = `mailto:digitalincome7777@gmail.com?subject=${subject}&body=${body}`;
-
-    cwMsg.textContent = "Thanks! Opening your mail app to confirm.";
-    cwMsg.className = "cw-msg ok";
-    cwForm.reset();
-  });
-
   const RAZORPAY_LINK = "https://rzp.io/rzp/USS4tum";
 
   const openBtn = document.getElementById("payOpenBtn");
   const form = document.getElementById("payForm");
 
+  // Every "Pay Now" click at the bottom reveals the customer details form.
   openBtn.addEventListener("click", () => {
-    form.classList.toggle("open");
-    if (form.classList.contains("open")) {
-      document.getElementById("payEmail").focus();
-    }
+    form.classList.add("open");
+    document.getElementById("payEmail").focus();
   });
 
   form.addEventListener("submit", (e) => {
@@ -507,10 +433,8 @@
 
     if (!emailOk || !mobileOk) return;
 
-    // Best-effort prefill so Razorpay's checkout — and its automatic
-    // payment-confirmation SMS/email — already has the customer's details.
-    // Prefill support can vary by Razorpay link type; this degrades
-    // gracefully to a normal checkout if the link ignores the params.
+    // Send the customer to the real Razorpay payment checkout only
+    // after the required details have been validated.
     const url = new URL(RAZORPAY_LINK);
     url.searchParams.set("email", email);
     url.searchParams.set("contact", mobile);
